@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org
+	  xmlns:sec=http://www.thymeleaf.org/extras/spring-security
+	  xmlns:shiro=http://www.pollix.at/thymeleaf/shiro>>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Signin Template for Bootstrap</title>
+		<!-- Bootstrap core CSS  th:href="@{/asserts/css/bootstrap.min.css}" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}-->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css} " rel="stylesheet">
+		<!-- Custom styles for this template  th:href="@{/asserts/css/signin.css}"-->
+		<link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}"  rel="stylesheet">
+		<!--ico放对位置自动生效-->
+		<!--<link th:href="@{/favicon.ico}" rel='shortcut icon' type='image/vnd.microsoft.icon'>-->
+
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin" action="dashboard.html" th:action="@{/login}" method="post">
+<!--			th:src="@{/asserts/img/bootstrap-solid.svg}"-->
+			<img class="mb-4" src="asserts/img/bootstrap-solid.svg" th:src="@{/asserts/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+<!--			错误提示信息-->
+			<p th:text="${msg}" style="color: red" th:if="${not #strings.isEmpty(msg)}"></p>
+			<label class="sr-only" th:text="#{login.accountId}">Username</label>
+			<input type="text" class="form-control" name="username" placeholder="Username" th:placeholder="#{login.accountId}" required="" autofocus="">
+			<label class="sr-only" th:text="#{login.password}">Password</label>
+			<input type="password" class="form-control" name="password" placeholder="Password" th:placeholder="#{login.password}" required="">
+			<div class="checkbox mb-3">
+				<label>
+          <input type="checkbox" value="remember-me"> [[#{login.remember}]]
+        </label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.signIn}">Sign in</button>
+			<p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+			<a class="btn btn-sm" th:href="@{/(lang='zh_CN')}">中文</a>
+			<a class="btn btn-sm" th:href="@{/(lang='en_US')}">English</a>
+		</form>
+
+	</body>
+
+</html>
