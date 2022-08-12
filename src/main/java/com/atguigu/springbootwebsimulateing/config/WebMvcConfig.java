@@ -20,17 +20,18 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 //        registry.addViewController("/main.html").setViewName("dashboard");
     }
 
-    @Override
+   @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         //第一个坑
         // WebMvcAutoConfiguration 这个注解中有一个特殊的条件(自动访问static文件下的路径)。当 WebMvcConfigurationSupport 没有加载时才生效，而为了使浏览器端不造成ID精度的丢失，配置了扩展MVC框架的消息转换器，使WebMvcConfigurationSupport加载了，无法使WebMvcAutoConfiguration生效。
-     /*   @ConditionalOnMissingBean({WebMvcConfigurationSupport.class})
+       /* @ConditionalOnMissingBean({WebMvcConfigurationSupport.class})
         @AutoConfigureOrder(-2147483638)
         public class WebMvcAutoConfiguration {*/
 
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("/webjars/");
+        registry.addResourceHandler("/**","/webjars/**").addResourceLocations("classpath:/static/","/webjars/");
+/*        registry.addResourceHandler()
+                .addResourceLocations("/webjars/");*/
+
 //        有webjars-location 才能用下面的，其实这些也是设置来的
                /* .resourceChain(false)
                 .addResolver(new WebJarsResourceResolver())
@@ -38,6 +39,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
 
     }
+
     @Bean
     public LocaleResolver localeResolver(){
         return new MyI18n();
